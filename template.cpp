@@ -42,8 +42,9 @@ ll __per__(ll a, ll b) {
   return (((-a - 1LL) / b) + 1LL) * b + a;
 }
 
-class dstream : public ostream {
+class dstream : private std::streambuf, public ostream {
  public:
+  dstream() : std::ostream(this) {}
   dstream &operator<<(__attribute__((unused))
                       ostream &(*endl)(std::ostream &out)) {
 #ifdef ATCODERDEBUG
@@ -52,8 +53,6 @@ class dstream : public ostream {
     return *this;
   }
 };
-
-dstream dout;
 
 template <typename T>
 dstream &operator<<(dstream &os, const T &v) {
