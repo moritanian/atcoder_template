@@ -54,6 +54,8 @@ class dstream : private std::streambuf, public ostream {
   }
 };
 
+dstream dout;
+
 template <typename T>
 dstream &operator<<(dstream &os, const T &v) {
 #ifdef ATCODERDEBUG
