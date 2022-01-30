@@ -14,18 +14,18 @@ bool chmin(ll& a, ll b) {
 
 const ll INF = 1e18;
 
-// g: vector<vector<array<ll, 3>>>
-void dikstra() {
-  // X -> Y の探索
+ll dikstra(ll N, ll start, ll goal, vector<vector<ll>>& tbl) {
   vector cost(N, INF);
-  cost[X] = 0;  // initial value
-  priority_queue q(greater<>{}, vector{pair{ll{}, X}});
+  cost[start] = 0;
+  priority_queue<pair<ll, ll>, vector<pair<ll, ll>>> q;
   while (q.size()) {
-    auto [c, at] = q.top();
+    auto [c, i] = q.top();
     q.pop();
-    if (c > cost[at]) continue;
-    for (auto& [to, v1, v2] : g[at])
-      if (chmin(cost[to], get_cost(c, v1, v2)) q.emplace(cost[to], to);
+    if (c > cost[i]) continue;
+    for (auto j : tbl[i]) {
+      ll next_cost = c + TODO;
+      if (chmin(cost[j], next_cost)) q.emplace(cost[j], j);
+    }
   }
-  ll ans = cost[Y];
+  return cost[goal];
 }
