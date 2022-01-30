@@ -189,6 +189,20 @@ ostream &operator<<(ostream &os, const tuple<ARGS...> &v) {
   return os;
 }
 
+template <typename T>
+ostream &operator<<(ostream &os, priority_queue<T> v) {
+  os << "[";
+  while (!v.empty()) {
+    os << v.top();
+    v.pop();
+    if (!v.empty()) {
+      os << ", ";
+    }
+  }
+  os << "]";
+  return os;
+}
+
 template <typename T, typename U, typename Comp = less<>>
 bool chmax(T &xmax, const U &x, Comp comp = {}) {
   if (comp(xmax, x)) {
