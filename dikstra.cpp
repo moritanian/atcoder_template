@@ -14,10 +14,11 @@ bool chmin(ll& a, ll b) {
 
 const ll INF = 1e18;
 
+template <typename T>
 ll dikstra(ll N, ll start, ll goal, vector<vector<ll>>& tbl) {
-  vector<ll> cost(N, INF);
+  vector<T> cost(N, INF);
   cost[start] = 0;
-  priority_queue<pair<ll, ll>, vector<pair<ll, ll>>> q;
+  priority_queue<pair<T, ll>, vector<pair<T, ll>>, greater<pair<T, ll>>> q;
   q.push({0, start});
 
   while (q.size()) {
@@ -25,7 +26,7 @@ ll dikstra(ll N, ll start, ll goal, vector<vector<ll>>& tbl) {
     q.pop();
     if (c > cost[i]) continue;
     for (auto j : tbl[i]) {
-      ll next_cost = c + TODO;
+      T next_cost = c + TODO;
       if (chmin(cost[j], next_cost)) q.emplace(cost[j], j);
     }
   }
