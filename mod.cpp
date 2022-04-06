@@ -286,5 +286,5 @@ ostream &operator<<(ostream &os, const modint<Modulus> &v) {
   return os;
 }
 
-const long long Z = 1000000007;
+const long long Z = 998244353;
 using Mint = modint<Z>;
