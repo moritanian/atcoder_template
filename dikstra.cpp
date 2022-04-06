@@ -33,10 +33,6 @@ ll dikstra(ll N, ll start, ll goal, vector<vector<ll>>& tbl) {
   return cost[goal];
 }
 
-auto func = [&](vector<ll> v1, vector<ll> v2) {
-  if (v1[0] == v2[0]) {
-    return v1[1] < v2[1];
-  }
-  return v1[0] > v2[0];
-};
-priority_queue<vector<ll>, vector<vector<ll>>, decltype(func)> q{func};
+priority_queue<pair<ll, tuple<ll, ll, ll>>, vector<pair<ll, tuple<ll, ll, ll>>>,
+               greater<pair<ll, tuple<ll, ll, ll>>>>
+    q;
