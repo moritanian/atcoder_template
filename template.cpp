@@ -30,20 +30,21 @@ using namespace std;
 #define REP(i, n) for (ll i = 0; i < ll(n); i++)
 #define FOR(i, a, b) for (ll i = a; i <= ll(b); i++)
 #define ALL(x) x.begin(), x.end()
-#define dame(a)        \
-  {                    \
-    cout << a << endl; \
-    return 0;          \
+#define dame(a)                                                                \
+  {                                                                            \
+    cout << a << endl;                                                         \
+    return 0;                                                                  \
   }
 typedef long long ll;
 
 ll __per__(ll a, ll b) {
-  if (a >= 0) return a % b;
+  if (a >= 0)
+    return a % b;
   return (((-a - 1LL) / b) + 1LL) * b + a;
 }
 
 class dstream : private std::streambuf, public ostream {
- public:
+public:
   dstream() : std::ostream(this) {}
   dstream &operator<<(__attribute__((unused))
                       ostream &(*endl)(std::ostream &out)) {
@@ -56,16 +57,40 @@ class dstream : private std::streambuf, public ostream {
 
 dstream dout;
 
+template <typename T> dstream &operator<<(dstream &os, const T &v);
+template <typename T> ostream &operator<<(ostream &os, const vector<T> &v);
+ostream &operator<<(ostream &os, const vector<bool> &v);
 template <typename T>
-dstream &operator<<(dstream &os, const T &v) {
+ostream &operator<<(ostream &os, const vector<vector<T>> &v);
+template <typename T, typename U>
+ostream &operator<<(ostream &os, const map<T, U> &v);
+template <typename T, typename U>
+ostream &operator<<(ostream &os, const unordered_map<T, U> &v);
+template <typename T, typename U>
+ostream &operator<<(ostream &os, const multimap<T, U> &v);
+template <typename T> ostream &operator<<(ostream &os, const set<T> &v);
+
+template <typename T>
+ostream &operator<<(ostream &os, const unordered_set<T> &v);
+template <typename T> ostream &operator<<(ostream &os, const multiset<T> &v);
+template <class tTuple, std::size_t... indices>
+void _print_tuple(ostream &os, tTuple const &iTuple,
+                  std::index_sequence<indices...>);
+template <typename T, typename U>
+ostream &operator<<(ostream &os, const pair<T, U> &v);
+template <class... ARGS>
+ostream &operator<<(ostream &os, const tuple<ARGS...> &v);
+template <typename T> ostream &operator<<(ostream &os, priority_queue<T> v);
+template <typename T> ostream &operator<<(ostream &os, queue<T> v);
+
+template <typename T> dstream &operator<<(dstream &os, const T &v) {
 #ifdef ATCODERDEBUG
   cout << "\033[1;31m" << v << "\033[0m";
 #endif
   return os;
 }
 
-template <typename T>
-ostream &operator<<(ostream &os, const vector<T> &v) {
+template <typename T> ostream &operator<<(ostream &os, const vector<T> &v) {
   os << "[ ";
   for (auto const &x : v) {
     os << x;
@@ -134,8 +159,7 @@ ostream &operator<<(ostream &os, const multimap<T, U> &v) {
   return os;
 }
 
-template <typename T>
-ostream &operator<<(ostream &os, const set<T> &v) {
+template <typename T> ostream &operator<<(ostream &os, const set<T> &v) {
   os << "{";
   for (auto const &x : v) {
     os << " ";
@@ -156,8 +180,7 @@ ostream &operator<<(ostream &os, const unordered_set<T> &v) {
   return os;
 }
 
-template <typename T>
-ostream &operator<<(ostream &os, const multiset<T> &v) {
+template <typename T> ostream &operator<<(ostream &os, const multiset<T> &v) {
   os << "{";
   for (auto const &x : v) {
     os << " ";
@@ -189,8 +212,7 @@ ostream &operator<<(ostream &os, const tuple<ARGS...> &v) {
   return os;
 }
 
-template <typename T>
-ostream &operator<<(ostream &os, priority_queue<T> v) {
+template <typename T> ostream &operator<<(ostream &os, priority_queue<T> v) {
   os << "[";
   while (!v.empty()) {
     os << v.top();
@@ -203,8 +225,7 @@ ostream &operator<<(ostream &os, priority_queue<T> v) {
   return os;
 }
 
-template <typename T>
-ostream &operator<<(ostream &os, queue<T> v) {
+template <typename T> ostream &operator<<(ostream &os, queue<T> v) {
   os << "[";
   while (!v.empty()) {
     os << v.front();
@@ -247,7 +268,8 @@ ll log10ll(ll n) {
 ll powll(ll a, ll b) {
   ll res = 1LL;
   while (b) {
-    if (b & 1) res *= a;
+    if (b & 1)
+      res *= a;
     a *= a;
     b >>= 1;
   }
